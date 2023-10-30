@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3q1myvo1tx7c"]
+
+[ext_resource type="Script" path="res://src/World.gd" id="1_vs851"]
+[ext_resource type="Texture2D" uid="uid://cqpm4wj0l7y4h" path="res://assets/arena.png" id="1_xk4ht"]
+[ext_resource type="Texture2D" uid="uid://h6mlgywpxkjc" path="res://assets/ball.png" id="2_v40mm"]
+[ext_resource type="Script" path="res://src/Ball.gd" id="3_ak20h"]
+[ext_resource type="Script" path="res://src/Player.gd" id="4_75c6n"]
+[ext_resource type="Texture2D" uid="uid://c6pwypuifropa" path="res://assets/paddle.png" id="4_nx2nv"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_oycn2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7gmd"]
+size = Vector2(3, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfvwe"]
+size = Vector2(2, 9)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_vs851")
+
+[node name="Arena" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Arena"]
+texture_filter = 1
+texture = ExtResource("1_xk4ht")
+
+[node name="LeftGoal" type="Area2D" parent="Arena"]
+position = Vector2(-257, -127)
+scale = Vector2(1, 25.4)
+
+[node name="LeftGoalCollider" type="CollisionShape2D" parent="Arena/LeftGoal"]
+shape = SubResource("SegmentShape2D_oycn2")
+
+[node name="RightGoal" type="Area2D" parent="Arena"]
+position = Vector2(256, -127)
+scale = Vector2(1, 25.7164)
+
+[node name="LeftGoalCollider" type="CollisionShape2D" parent="Arena/RightGoal"]
+shape = SubResource("SegmentShape2D_oycn2")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+script = ExtResource("3_ak20h")
+
+[node name="BallSprite" type="Sprite2D" parent="Ball"]
+texture_filter = 1
+scale = Vector2(0.995841, 1)
+texture = ExtResource("2_v40mm")
+
+[node name="BallCollider" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("RectangleShape2D_q7gmd")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(3, 8)
+script = ExtResource("4_75c6n")
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+texture_filter = 1
+texture = ExtResource("4_nx2nv")
+
+[node name="PlayerCollison" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_rfvwe")

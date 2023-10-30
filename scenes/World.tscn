@@ -1,0 +1,160 @@
+[gd_scene load_steps=14 format=3 uid="uid://bggl5m1qaqxvi"]
+
+[ext_resource type="Script" path="res://src/World.gd" id="1_vs851"]
+[ext_resource type="Texture2D" uid="uid://cqpm4wj0l7y4h" path="res://assets/arena.png" id="1_xk4ht"]
+[ext_resource type="Texture2D" uid="uid://h6mlgywpxkjc" path="res://assets/ball.png" id="2_v40mm"]
+[ext_resource type="Script" path="res://src/Ball.gd" id="3_ak20h"]
+[ext_resource type="Script" path="res://src/Player.gd" id="4_75c6n"]
+[ext_resource type="Texture2D" uid="uid://c6pwypuifropa" path="res://assets/paddle.png" id="4_nx2nv"]
+[ext_resource type="Script" path="res://src/PlayerTwo.gd" id="7_v5w7p"]
+[ext_resource type="Script" path="res://src/MatchData.gd" id="8_gcnkg"]
+[ext_resource type="Script" path="res://src/UserInterface.gd" id="9_8je08"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_oycn2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72t4c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7gmd"]
+size = Vector2(3, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfvwe"]
+size = Vector2(2, 9)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_vs851")
+
+[node name="Arena" type="Node2D" parent="."]
+
+[node name="ArenaSprite" type="Sprite2D" parent="Arena"]
+texture_filter = 1
+texture = ExtResource("1_xk4ht")
+
+[node name="LeftGoal" type="Area2D" parent="Arena"]
+position = Vector2(-257, -127)
+scale = Vector2(1, 25.4)
+
+[node name="LeftGoalCollider" type="CollisionShape2D" parent="Arena/LeftGoal"]
+shape = SubResource("SegmentShape2D_oycn2")
+
+[node name="RightGoal" type="Area2D" parent="Arena"]
+position = Vector2(256, -127)
+scale = Vector2(1, 25.7164)
+
+[node name="LeftGoalCollider" type="CollisionShape2D" parent="Arena/RightGoal"]
+shape = SubResource("SegmentShape2D_oycn2")
+
+[node name="TopBorder" type="StaticBody2D" parent="Arena"]
+position = Vector2(0, -122)
+scale = Vector2(24.94, 0.247947)
+
+[node name="TopCollider" type="CollisionShape2D" parent="Arena/TopBorder"]
+shape = SubResource("RectangleShape2D_72t4c")
+
+[node name="BottomBorder" type="StaticBody2D" parent="Arena"]
+position = Vector2(0, 122)
+scale = Vector2(24.94, 0.247947)
+
+[node name="BottomCollider" type="CollisionShape2D" parent="Arena/BottomBorder"]
+shape = SubResource("RectangleShape2D_72t4c")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(0, -302)
+motion_mode = 1
+script = ExtResource("3_ak20h")
+
+[node name="BallSprite" type="Sprite2D" parent="Ball"]
+texture_filter = 1
+scale = Vector2(0.995841, 1)
+texture = ExtResource("2_v40mm")
+
+[node name="BallCollider" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("RectangleShape2D_q7gmd")
+
+[node name="GoalTimer" type="Timer" parent="Ball"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(-38, 0)
+scale = Vector2(1, 2.36)
+motion_mode = 1
+script = ExtResource("4_75c6n")
+SPEED = 100.0
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_rfvwe")
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+texture_filter = 1
+texture = ExtResource("4_nx2nv")
+
+[node name="PlayerTwo" type="CharacterBody2D" parent="."]
+position = Vector2(-38, 0)
+scale = Vector2(1, 2.36)
+script = ExtResource("7_v5w7p")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="PlayerTwo"]
+shape = SubResource("RectangleShape2D_rfvwe")
+
+[node name="PlayerSprite" type="Sprite2D" parent="PlayerTwo"]
+texture_filter = 1
+texture = ExtResource("4_nx2nv")
+
+[node name="MatchData" type="Node" parent="."]
+script = ExtResource("8_gcnkg")
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+script = ExtResource("9_8je08")
+
+[node name="Control" type="Control" parent="UserInterface"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GoalLabel" type="Label" parent="UserInterface/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerOneScore" type="Label" parent="UserInterface/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -115.5
+offset_right = 53.0
+offset_bottom = -92.5
+grow_vertical = 2
+
+[node name="PlayerTwoScore" type="Label" parent="UserInterface/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -115.5
+offset_right = -12.0
+offset_bottom = -92.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[connection signal="body_entered" from="Arena/LeftGoal" to="Ball" method="_on_left_goal_body_entered"]
+[connection signal="body_entered" from="Arena/RightGoal" to="Ball" method="_on_right_goal_body_entered"]
+[connection signal="player_one_goal" from="Ball" to="." method="_on_ball_player_one_goal"]
+[connection signal="player_two_goal" from="Ball" to="." method="_on_ball_player_two_goal"]
+[connection signal="timeout" from="Ball/GoalTimer" to="Ball" method="_on_goal_timer_timeout"]
