@@ -10,11 +10,12 @@ extends Node2D
 
 @onready var player_one_starting_pos = Vector2(5, get_viewport_rect().size.y / 2)
 @onready var player_two_starting_pos = Vector2(get_viewport_rect().size.x - 5, get_viewport_rect().size.y / 2)
-@onready var ball_starting_pos = get_viewport_rect().size / 2
+@onready var ball_starting_pos = arena_center
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	arena.position = get_viewport_rect().size / 2
-	ball.position = get_viewport_rect().size / 2
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	arena.position = arena_center
+	ball.position = arena_center
 	player.position = player_one_starting_pos
 	player_two.position = player_two_starting_pos
 	
@@ -26,15 +27,20 @@ func _process(delta):
 
 func _on_ball_player_one_goal():
 	match_data.player_one_score += 1
-	player.position = player_one_starting_pos
-	player_two.position = player_two_starting_pos
+	set_to_start()
+	# player.position = player_one_starting_pos
+	# player_two.position = player_two_starting_pos
 
 
 func _on_ball_player_two_goal():
 	match_data.player_two_score += 1
+	set_to_start()
 
 
 func set_to_start():
-	ball.position = get_viewport_rect().size / 2
+	ball.position = arena_center
 	player.position = player_one_starting_pos
 	player_two.position = player_two_starting_pos
+
+func reset_scene():
+	get_tree().reload_current_scene()

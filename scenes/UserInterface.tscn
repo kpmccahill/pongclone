@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq8iy73cfekkb"]
+
+[ext_resource type="Script" path="res://src/UserInterface.gd" id="1_skgun"]
+[ext_resource type="LabelSettings" uid="uid://dqjfv2k66ghb5" path="res://resources/LabelRes.tres" id="2_ympwn"]
+
+[node name="UserInterface" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_skgun")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GoalLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("2_ympwn")
+
+[node name="PlayerOneScore" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -115.5
+offset_right = 55.0
+offset_bottom = -92.5
+grow_vertical = 2
+label_settings = ExtResource("2_ympwn")
+
+[node name="PlayerTwoScore" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -115.5
+offset_right = -15.0
+offset_bottom = -92.5
+grow_horizontal = 0
+grow_vertical = 2
+label_settings = ExtResource("2_ympwn")
+
+[node name="PauseMenu" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -23.5
+offset_right = 20.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/PauseMenu"]
+layout_mode = 2
+text = "Paused"
+
+[node name="Button" type="Button" parent="Control/PauseMenu"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Control/PauseMenu"]
+layout_mode = 2

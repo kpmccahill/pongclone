@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
+@export var SPEED = 100.0
 
 @export var direction = Vector2(-1, 0)
 @onready var arena_center = get_viewport_rect().size / 2
 @onready var goal_timer = $GoalTimer
+
+@export var paddle_impulse: Vector2 = Vector2(1.0, 0)
 
 var collision_data
 signal player_one_goal
@@ -23,7 +25,7 @@ func _physics_process(delta):
 		
 		var collider_name = collision_data.get_collider().name
 		if collider_name == "Player" or collider_name == "PlayerTwo":
-			velocity += (Vector2(0.5, 0) * velocity.normalized())
+			velocity += (paddle_impulse * velocity.normalized())
 		if collider_name == "RightGoal":
 			print("test")
 			position = arena_center 
@@ -33,7 +35,7 @@ func _physics_process(delta):
 ## Should this be handled by the ball? or the world.
 func _on_left_goal_body_entered(_body):
 	velocity = Vector2.ZERO
-	position = arena_center
+	# position = arena_center
 	goal_timer.start()
 	emit_signal("player_two_goal")
 	direction = Vector2(1, 0)
@@ -42,7 +44,7 @@ func _on_left_goal_body_entered(_body):
 
 func _on_right_goal_body_entered(_body):
 	velocity = Vector2.ZERO
-	position = arena_center
+	# position = arena_center
 	goal_timer.start()
 	emit_signal("player_one_goal")
 	direction = Vector2(-1, 0)
