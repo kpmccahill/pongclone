@@ -44,5 +44,3 @@ scale = Vector2(24.94, 0.247947)
 
 [node name="BottomCollider" type="CollisionShape2D" parent="BottomBorder"]
 shape = SubResource("RectangleShape2D_72t4c")
-
-[node name="ArenaCenter" type="Node2D" parent="."]
