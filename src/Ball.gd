@@ -4,9 +4,12 @@ extends CharacterBody2D
 
 @export var direction = Vector2(-1, 0)
 @onready var arena_center = get_viewport_rect().size / 2
-@onready var goal_timer = $GoalTimer
 
+@onready var goal_timer = $GoalTimer
 @export var paddle_impulse: Vector2 = Vector2(1.0, 0)
+
+@onready var left_goal = $"../Arena/LeftGoal"
+@onready var right_goal = $"../Arena/RightGoal"
 
 var collision_data
 signal player_one_goal
@@ -14,7 +17,15 @@ signal player_two_goal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	velocity += SPEED * direction
+	#velocity += SPEED * direction
+	
+	# start the timer so that the game doesnt just start immediately.
+	goal_timer.wait_time = 5
+	goal_timer.start()
+	
+	# signals
+	left_goal.body_entered.connect(_on_left_goal_body_entered)
+	right_goal.body_entered.connect(_on_right_goal_body_entered)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -26,29 +37,23 @@ func _physics_process(delta):
 		var collider_name = collision_data.get_collider().name
 		if collider_name == "Player" or collider_name == "PlayerTwo":
 			velocity += (paddle_impulse * velocity.normalized())
-		if collider_name == "RightGoal":
-			print("test")
-			position = arena_center 
-		if collider_name == "LeftGoal":
-			position = arena_center
 
 ## Should this be handled by the ball? or the world.
 func _on_left_goal_body_entered(_body):
 	velocity = Vector2.ZERO
-	# position = arena_center
+	direction = Vector2(-1, 0)
+	
 	goal_timer.start()
 	emit_signal("player_two_goal")
-	direction = Vector2(1, 0)
-	print("2 goal!")
-
+	print("2 Goal!")
 
 func _on_right_goal_body_entered(_body):
 	velocity = Vector2.ZERO
-	# position = arena_center
+	direction = Vector2(-1, 0)
+	
 	goal_timer.start()
 	emit_signal("player_one_goal")
-	direction = Vector2(-1, 0)
-	print("1 goal!")
+	print("1 Goal!")
 
 func _on_goal_timer_timeout():
 	velocity += SPEED * direction

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce1ita32w4gja"]
+
+[ext_resource type="Script" path="res://src/Ball.gd" id="1_i1b4k"]
+[ext_resource type="Texture2D" uid="uid://h6mlgywpxkjc" path="res://assets/ball.png" id="2_08x5d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7gmd"]
+size = Vector2(3, 3)
+
+[node name="Ball" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_i1b4k")
+paddle_impulse = Vector2(5, 0)
+
+[node name="BallSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.995841, 1)
+texture = ExtResource("2_08x5d")
+
+[node name="BallCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q7gmd")
+
+[node name="GoalTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="GoalTimer" to="." method="_on_goal_timer_timeout"]

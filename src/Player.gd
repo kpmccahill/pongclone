@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 200.0
+@export var SPEED = 100
 
 func _ready():
 	pass

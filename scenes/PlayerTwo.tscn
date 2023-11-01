@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyqpa1cn6dogd"]
+
+[ext_resource type="Script" path="res://src/PlayerTwo.gd" id="1_5ygem"]
+[ext_resource type="Texture2D" uid="uid://c6pwypuifropa" path="res://assets/paddle.png" id="2_s5pjj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urqiv"]
+size = Vector2(2, 9)
+
+[node name="PlayerTwo" type="CharacterBody2D"]
+script = ExtResource("1_5ygem")
+
+[node name="PlayerTwoSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_s5pjj")
+
+[node name="PlayerTwoCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_urqiv")

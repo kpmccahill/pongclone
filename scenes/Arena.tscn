@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5nmuydc557na"]
+
+[ext_resource type="Texture2D" uid="uid://cqpm4wj0l7y4h" path="res://assets/arena.png" id="1_53aru"]
+[ext_resource type="Script" path="res://src/Arena.gd" id="1_ps4bd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ju0u4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_al5rc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72t4c"]
+
+[node name="Arena" type="Node2D"]
+position = Vector2(257, 126)
+script = ExtResource("1_ps4bd")
+
+[node name="ArenaSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_53aru")
+
+[node name="LeftGoal" type="Area2D" parent="."]
+position = Vector2(-269, 0)
+scale = Vector2(1.24, 12.64)
+
+[node name="LeftGoalCollider" type="CollisionShape2D" parent="LeftGoal"]
+shape = SubResource("RectangleShape2D_ju0u4")
+
+[node name="RightGoal" type="Area2D" parent="."]
+position = Vector2(270, 0)
+scale = Vector2(1.36, 12.64)
+
+[node name="RightGoalCollider" type="CollisionShape2D" parent="RightGoal"]
+shape = SubResource("RectangleShape2D_al5rc")
+
+[node name="TopBorder" type="StaticBody2D" parent="."]
+position = Vector2(0, -122)
+scale = Vector2(24.94, 0.247947)
+
+[node name="TopCollider" type="CollisionShape2D" parent="TopBorder"]
+shape = SubResource("RectangleShape2D_72t4c")
+
+[node name="BottomBorder" type="StaticBody2D" parent="."]
+position = Vector2(0, 122)
+scale = Vector2(24.94, 0.247947)
+
+[node name="BottomCollider" type="CollisionShape2D" parent="BottomBorder"]
+shape = SubResource("RectangleShape2D_72t4c")
+
+[node name="ArenaCenter" type="Node2D" parent="."]

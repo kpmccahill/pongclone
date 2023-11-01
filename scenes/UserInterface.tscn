@@ -17,18 +17,16 @@ grow_vertical = 2
 
 [node name="GoalLabel" type="Label" parent="Control"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -11.5
+offset_top = 11.0
 offset_right = 20.0
-offset_bottom = 11.5
+offset_bottom = 34.0
 grow_horizontal = 2
-grow_vertical = 2
 label_settings = ExtResource("2_ympwn")
+horizontal_alignment = 1
 
 [node name="PlayerOneScore" type="Label" parent="Control"]
 layout_mode = 1
@@ -71,12 +69,52 @@ offset_bottom = 23.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control/PauseMenu"]
+[node name="PausedLabel" type="Label" parent="Control/PauseMenu"]
 layout_mode = 2
 text = "Paused"
+horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Control/PauseMenu"]
+[node name="Resume" type="Button" parent="Control/PauseMenu"]
 layout_mode = 2
+text = "Resume"
 
-[node name="Button2" type="Button" parent="Control/PauseMenu"]
+[node name="Restart" type="Button" parent="Control/PauseMenu"]
 layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Control/PauseMenu"]
+layout_mode = 2
+text = "Quit"
+
+[node name="GameOverMenu" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="Control/GameOverMenu"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="Control/GameOverMenu"]
+layout_mode = 2
+text = "Restart
+"
+
+[node name="Quit" type="Button" parent="Control/GameOverMenu"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="button_down" from="Control/PauseMenu/Resume" to="." method="_on_resume_button_down"]
+[connection signal="button_down" from="Control/PauseMenu/Restart" to="." method="_on_restart_button_down"]
+[connection signal="button_down" from="Control/PauseMenu/Quit" to="." method="_on_quit_button_down"]
+[connection signal="button_down" from="Control/GameOverMenu/Restart" to="." method="_on_restart_button_down"]
+[connection signal="button_down" from="Control/GameOverMenu/Quit" to="." method="_on_quit_button_down"]
