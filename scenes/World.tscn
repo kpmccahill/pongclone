@@ -31,7 +31,7 @@ SPEED = 150
 position = Vector2(-27, 0)
 scale = Vector2(1, 2.5)
 motion_mode = 1
-tracking_speed = Vector2(0.2, 2.5)
+tracking_speed = Vector2(0.2, 2.1)
 
 [node name="UserInterface" parent="." instance=ExtResource("9_aytlb")]
 
