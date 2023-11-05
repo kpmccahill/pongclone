@@ -20,7 +20,7 @@ center_offset = 0
 [node name="Ball" parent="." instance=ExtResource("3_aa036")]
 position = Vector2(0, -450)
 SPEED = 150.0
-paddle_impulse = 50.0
+paddle_impulse = 0.5
 
 [node name="Player" parent="." instance=ExtResource("4_hlhu2")]
 scale = Vector2(1, 2.5)
@@ -30,8 +30,7 @@ SPEED = 200
 position = Vector2(-27, 0)
 scale = Vector2(1, 2.5)
 motion_mode = 1
-is_artificial = true
-tracking_speed = Vector2(0.2, 3.1)
+tracking_speed = Vector2(0.2, 2.5)
 
 [node name="UserInterface" parent="." instance=ExtResource("9_aytlb")]
 

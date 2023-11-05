@@ -9,7 +9,6 @@ size = Vector2(3, 3)
 [node name="Ball" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_i1b4k")
-paddle_impulse = Vector2(5, 0)
 
 [node name="BallSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -21,5 +20,7 @@ shape = SubResource("RectangleShape2D_q7gmd")
 
 [node name="GoalTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="timeout" from="GoalTimer" to="." method="_on_goal_timer_timeout"]

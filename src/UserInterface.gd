@@ -13,6 +13,9 @@ extends CanvasLayer
 @onready var game_over_menu = $Control/GameOverMenu
 @onready var pause_menu = $Control/PauseMenu
 
+@onready var audio_stream_player = $AudioStreamPlayer
+@onready var select_sound = preload("res://assets/sounds/select.wav")
+
 # string templates
 var player_one_score_text = "Player 1: %d"
 var player_two_score_text = "Player 2: %d"
@@ -40,6 +43,8 @@ func _ready():
 	
 	# Setting start state.
 	goal_state = GoalStates.MATCH_START
+	
+	audio_stream_player.stream = select_sound
 	
 
 func _unhandled_input(event):
@@ -81,13 +86,16 @@ func quit():
 # button handlers
 func _on_resume_button_down():
 	toggle_pause()
-
+	audio_stream_player.play()
+	
 func _on_quit_button_down():
+	audio_stream_player.play()
 	quit()
 
 func _on_restart_button_down():
 	new_match.emit()
 	get_tree().paused = false
+	audio_stream_player.play()
 
 # game flow handlers
 func _on_player_one_goal():

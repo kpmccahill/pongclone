@@ -12,6 +12,14 @@ extends Node2D
 @onready var player_one_starting_pos = Vector2(5, get_viewport_rect().size.y / 2)
 @onready var player_two_starting_pos = Vector2(get_viewport_rect().size.x - 5, get_viewport_rect().size.y / 2)
 @onready var ball_starting_pos = arena_center
+
+var versus_computer = false
+
+func _init(vs_computer: bool = false):
+	#print(vs_computer)
+	if vs_computer:
+		versus_computer = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -22,6 +30,7 @@ func _ready():
 	arena.position = arena_center
 	player.position = player_one_starting_pos
 	player_two.position = player_two_starting_pos
+	player_two.is_artificial = versus_computer
 
 	ball.player_one_goal.connect(_on_ball_player_one_goal)
 	ball.player_two_goal.connect(_on_ball_player_two_goal)
