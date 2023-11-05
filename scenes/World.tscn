@@ -13,6 +13,7 @@ script = ExtResource("1_vs851")
 
 [node name="MatchData" type="Node" parent="."]
 script = ExtResource("8_gcnkg")
+max_score = 2
 
 [node name="Arena" parent="." instance=ExtResource("2_w2vr4")]
 center_offset = 0
@@ -24,7 +25,7 @@ paddle_impulse = 0.5
 
 [node name="Player" parent="." instance=ExtResource("4_hlhu2")]
 scale = Vector2(1, 2.5)
-SPEED = 200
+SPEED = 150
 
 [node name="PlayerTwo" parent="." instance=ExtResource("5_b43b1")]
 position = Vector2(-27, 0)

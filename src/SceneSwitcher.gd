@@ -20,12 +20,11 @@ func _deferred_switch_scene(res_path):
 		# I don't really like the way I did this, but it works for now. Figure out a
 		# different method in the future.
 		current_scene = new_scene.instantiate()
-		current_scene.versus_computer = versus_computer
 	else:
 		current_scene = new_scene.instantiate()
 	get_tree().root.add_child(current_scene)
 	get_tree().current_scene = current_scene
 
-	versus_computer = false 	# reset this after it gets consumed above, so that we
+	# versus_computer = false 	# reset this after it gets consumed above, so that we
 								# dont instantiate something that cant have a flag.
 								# don't like that i'm doing it this way.

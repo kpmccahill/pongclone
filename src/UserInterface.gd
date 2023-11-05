@@ -27,7 +27,7 @@ var start_timer_text = "Get Ready!\n%.1f"
 enum GoalStates {MATCH_START, PLAYER_ONE, PLAYER_TWO, NONE}
 var goal_state = GoalStates.NONE
 
-signal new_match
+signal new_match(ai_setting)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
