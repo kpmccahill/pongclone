@@ -11,8 +11,9 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	if is_artificial and arena.side_state == arena.BallSide.PLAYER_TWO:
-		position.y = move_toward(position.y, ball.position.y, tracking_speed.y)
+	if is_artificial:
+		if arena.side_state == arena.BallSide.PLAYER_TWO:
+			position.y = move_toward(position.y, ball.position.y, tracking_speed.y)
 	else:
 		if Input.is_action_pressed("ui_up"):
 			position.y -= SPEED * delta
